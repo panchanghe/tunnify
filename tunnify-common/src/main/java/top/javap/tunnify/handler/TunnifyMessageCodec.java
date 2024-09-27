@@ -22,8 +22,7 @@ public class TunnifyMessageCodec extends ByteToMessageCodec<TunnifyMessage> {
         byteBuf.writeInt(4 + bytes.length);
         byteBuf.writeInt(tunnifyMessage.getCommand());
         byteBuf.writeBytes(bytes);
-        ctx.writeAndFlush(byteBuf);
-        byteBuf.retain();// remove
+        System.err.println("send:" + tunnifyMessage);
     }
 
     @Override
@@ -36,6 +35,7 @@ public class TunnifyMessageCodec extends ByteToMessageCodec<TunnifyMessage> {
                 byte[] bytes = new byte[length - 4];
                 input.readBytes(bytes);
                 list.add(new TunnifyRawMessage(command, bytes));
+                System.err.println("receive:" + length);
             }
         }
     }

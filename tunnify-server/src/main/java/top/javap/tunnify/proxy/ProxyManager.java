@@ -7,7 +7,6 @@ package top.javap.tunnify.proxy;
  **/
 public final class ProxyManager {
 
-
     public static void openProxy() {
 
     }

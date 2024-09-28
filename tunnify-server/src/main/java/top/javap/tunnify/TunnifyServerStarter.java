@@ -1,5 +1,7 @@
 package top.javap.tunnify;
 
+import top.javap.tunnify.server.TunnifyServer;
+
 /**
  * @author: pch
  * @description:

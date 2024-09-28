@@ -1,8 +1,8 @@
 package top.javap.tunnify;
 
-import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
+import top.javap.tunnify.client.TunnifyClient;
 
 /**
  * @author: pch
@@ -15,7 +15,7 @@ public class TunnifyClientStarter {
         client.connect().addListener(new ChannelFutureListener() {
             @Override
             public void operationComplete(ChannelFuture channelFuture) throws Exception {
-                client.openProxy(8080, 9001);
+                client.openProxy(80, 9001);
             }
         });
     }

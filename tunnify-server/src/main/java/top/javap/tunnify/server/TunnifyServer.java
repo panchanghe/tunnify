@@ -1,4 +1,4 @@
-package top.javap.tunnify;
+package top.javap.tunnify.server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
@@ -6,7 +6,6 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import lombok.AllArgsConstructor;
-import lombok.extern.apachecommons.CommonsLog;
 import lombok.extern.slf4j.Slf4j;
 import top.javap.tunnify.handler.TunnifyMessageCodec;
 import top.javap.tunnify.handler.TunnifyServerHandler;

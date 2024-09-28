@@ -22,20 +22,21 @@ public class TunnifyMessageCodec extends ByteToMessageCodec<TunnifyMessage> {
         byteBuf.writeInt(4 + bytes.length);
         byteBuf.writeInt(tunnifyMessage.getCommand());
         byteBuf.writeBytes(bytes);
-        System.err.println("send:" + tunnifyMessage);
     }
 
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf input, List<Object> list) throws Exception {
-        if (input.readableBytes() > 4) {
-            int length = input.getInt(0);
-            if (input.readableBytes() >= length + 4) {
-                input.readInt();// skip
+        while (input.readableBytes() >= 4) {
+            input.markReaderIndex();
+            int length = input.readInt();
+            if (input.readableBytes() >= length) {
                 int command = input.readInt();
                 byte[] bytes = new byte[length - 4];
                 input.readBytes(bytes);
                 list.add(new TunnifyRawMessage(command, bytes));
-                System.err.println("receive:" + length);
+            } else {
+                input.resetReaderIndex();
+                return;
             }
         }
     }

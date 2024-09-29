@@ -9,6 +9,6 @@ import top.javap.tunnify.server.TunnifyServer;
  **/
 public class TunnifyServerStarter {
     public static void main(String[] args) throws Exception {
-        new TunnifyServer(9000).start();
+        new TunnifyServer(9000, "password").start();
     }
 }

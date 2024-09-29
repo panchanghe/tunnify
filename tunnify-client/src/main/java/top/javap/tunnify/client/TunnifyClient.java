@@ -9,11 +9,11 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import top.javap.tunnify.command.CommandEnum;
 import top.javap.tunnify.command.data.OpenProxyData;
 import top.javap.tunnify.handler.TunnifyClientHandler;
 import top.javap.tunnify.handler.TunnifyMessageCodec;
 import top.javap.tunnify.protocol.TunnifyMessage;
-import top.javap.tunnify.protocol.TunnifyMessageConstant;
 
 /**
  * @author: pch
@@ -29,7 +29,8 @@ public class TunnifyClient {
     private Channel channel;
 
     public ChannelFuture connect() throws Exception {
-        ChannelFuture channelFuture = new Bootstrap().group(new NioEventLoopGroup(1))
+        final NioEventLoopGroup group = new NioEventLoopGroup(1);
+        ChannelFuture channelFuture = new Bootstrap().group(group)
                 .channel(NioSocketChannel.class)
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
@@ -39,11 +40,12 @@ public class TunnifyClient {
                     }
                 }).connect(serverHost, serverPort).sync();
         this.channel = channelFuture.channel();
+        this.channel.closeFuture().addListener(f -> group.shutdownGracefully());
         return channelFuture;
     }
 
     public void openProxy(int localPort, int remotePort) {
-        TunnifyMessage<OpenProxyData> message = new TunnifyMessage<>(TunnifyMessageConstant.COMMAND_OPEN_PROXY, new OpenProxyData(localPort, remotePort));
+        TunnifyMessage<OpenProxyData> message = new TunnifyMessage<>(CommandEnum.OPEN_PROXY.getCode(), new OpenProxyData(localPort, remotePort));
         channel.writeAndFlush(message);
     }
 }

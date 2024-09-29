@@ -2,6 +2,7 @@ package top.javap.tunnify.proxy;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.ByteBufUtil;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -11,7 +12,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import top.javap.tunnify.command.data.ForwardingData;
 import top.javap.tunnify.protocol.TunnifyMessage;
-import top.javap.tunnify.protocol.TunnifyMessageConstant;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 @RequiredArgsConstructor
 public class ProxyConnection {
@@ -26,7 +29,7 @@ public class ProxyConnection {
                 sc.pipeline().addLast(channelHandler);
             }
         }).connect(host, port).sync();
-        channelFuture.addListener(f -> group.shutdownGracefully());
+        channelFuture.channel().closeFuture().addListener(f -> group.shutdownGracefully());
         return new ProxyConnection(channelFuture.channel());
     }
 

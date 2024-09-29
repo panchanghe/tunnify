@@ -2,7 +2,6 @@ package top.javap.tunnify.command.data;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
@@ -13,6 +12,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class ConnectData {
+public class AuthenticationData {
     private String password;
 }

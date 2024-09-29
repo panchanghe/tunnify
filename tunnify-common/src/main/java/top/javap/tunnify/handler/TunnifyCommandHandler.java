@@ -1,15 +1,12 @@
 package top.javap.tunnify.handler;
 
-import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.group.ChannelGroup;
+import io.netty.channel.group.DefaultChannelGroup;
+import io.netty.util.concurrent.GlobalEventExecutor;
 import lombok.extern.slf4j.Slf4j;
-import top.javap.tunnify.command.Command;
-import top.javap.tunnify.protocol.TunnifyMessage;
 import top.javap.tunnify.protocol.TunnifyRawMessage;
-
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author: pch
@@ -18,7 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
  **/
 @Slf4j
 public abstract class TunnifyCommandHandler extends ChannelInboundHandlerAdapter {
-    protected static final Map<String, Channel> channels = new ConcurrentHashMap<>();
+    protected static final ChannelGroup channels = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {

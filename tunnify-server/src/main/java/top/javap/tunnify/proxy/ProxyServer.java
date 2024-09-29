@@ -3,6 +3,7 @@ package top.javap.tunnify.proxy;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
+import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
@@ -19,7 +20,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ProxyServer {
     private final Channel channel;
 
-    public static ProxyServer bind(int port, Map<String, Channel> subChannels, ProxyHandler proxyHandler) {
+    public static ProxyServer bind(int port, ChannelGroup subChannels, ProxyHandler proxyHandler) {
         final NioEventLoopGroup bossGroup = new NioEventLoopGroup(1);
         final NioEventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
@@ -33,15 +34,19 @@ public class ProxyServer {
                             sc.pipeline().addLast(new ChannelInboundHandlerAdapter() {
                                 @Override
                                 public void channelActive(ChannelHandlerContext ctx) throws Exception {
-                                    subChannels.put(ctx.channel().id().asLongText(), ctx.channel());
-                                    System.err.println(ctx.channel().id().asLongText());
+                                    subChannels.add(ctx.channel());
                                     super.channelActive(ctx);
                                 }
 
                                 @Override
                                 public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-                                    subChannels.remove(ctx.channel().id().asLongText());
+                                    subChannels.remove(ctx.channel());
                                     super.channelInactive(ctx);
+                                }
+
+                                @Override
+                                public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+                                    cause.printStackTrace();
                                 }
                             });
                             sc.pipeline().addLast(proxyHandler);
@@ -51,7 +56,7 @@ public class ProxyServer {
                 bossGroup.shutdownGracefully();
                 workerGroup.shutdownGracefully();
             });
-            log.info("open proxy {}", port);
+            log.info("open proxy port:{}", port);
             return new ProxyServer(channel);
         } catch (Exception e) {
             bossGroup.shutdownGracefully();

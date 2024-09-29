@@ -1,30 +1,21 @@
 package top.javap.tunnify.handler;
 
-import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufUtil;
-import io.netty.buffer.Unpooled;
-import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.socket.SocketChannel;
-import io.netty.channel.socket.nio.NioSocketChannel;
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import top.javap.tunnify.command.Command;
-import top.javap.tunnify.command.CommandConstant;
-import top.javap.tunnify.command.data.ConnectData;
+import top.javap.tunnify.command.CommandEnum;
+import top.javap.tunnify.command.data.AuthenticationData;
 import top.javap.tunnify.command.data.ConnectProxyData;
 import top.javap.tunnify.command.data.ForwardingData;
 import top.javap.tunnify.command.data.MessageData;
+import top.javap.tunnify.exceptions.TunnifyException;
 import top.javap.tunnify.protocol.TunnifyMessage;
-import top.javap.tunnify.protocol.TunnifyMessageConstant;
 import top.javap.tunnify.protocol.TunnifyRawMessage;
 import top.javap.tunnify.proxy.ProxyConnection;
+import top.javap.tunnify.utils.Assert;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -34,46 +25,59 @@ import java.util.concurrent.ConcurrentHashMap;
  * @description:
  * @date: 2024/9/27
  **/
-@RequiredArgsConstructor
 @Slf4j
 public class TunnifyClientHandler extends TunnifyCommandHandler {
     private static final Map<String, ProxyConnection> proxyConnections = new ConcurrentHashMap<>();
     private final String password;
 
+    public TunnifyClientHandler(String password) {
+        Assert.hasText(password, "password cannot be empty");
+        this.password = password;
+    }
+
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        TunnifyMessage<ConnectData> message = new TunnifyMessage(TunnifyMessageConstant.COMMAND_CONNECT, new ConnectData(password));
+        TunnifyMessage<AuthenticationData> message = new TunnifyMessage(CommandEnum.AUTHENTICATION.getCode(), new AuthenticationData(password));
         ctx.writeAndFlush(message);
         super.channelInactive(ctx);
     }
 
     @Override
     protected void process(ChannelHandlerContext ctx, TunnifyRawMessage message) {
-        if (TunnifyMessageConstant.COMMAND_CLOSE.equals(message.getCommand())) {
-            processClose(ctx, message.getDataObject(MessageData.class));
-        } else if (TunnifyMessageConstant.COMMAND_CONNECT_PROXY.equals(message.getCommand())) {
-            processConnectProxy(ctx, message.getDataObject(ConnectProxyData.class));
-        } else if (TunnifyMessageConstant.COMMAND_FORWARDING.equals(message.getCommand())) {
-            processForwarding(ctx, message.getDataObject(ForwardingData.class));
+        CommandEnum commandEnum = CommandEnum.getByCode(message.getCommand());
+        switch (commandEnum) {
+            case ACCESS_DENIED -> processAccessDenied(ctx, message.getDataObject(MessageData.class));
+            case DISCONNECT -> processDisconnect(ctx, message.getDataObject(MessageData.class));
+            case PROXY_CONNECT -> processProxyConnect(ctx, message.getDataObject(ConnectProxyData.class));
+            case DATA_FORWARDING -> processForwarding(ctx, message.getDataObject(ForwardingData.class));
+            default -> throw new TunnifyException("Invalid command:" + message.getCommand());
         }
+    }
+
+    private void processAccessDenied(ChannelHandlerContext ctx, MessageData messageData) {
+        log.info("The server denies access,because:{}", messageData.getMessage());
+        ctx.close();
     }
 
     private void processForwarding(ChannelHandlerContext ctx, ForwardingData forwardingData) {
         ProxyConnection proxyConnection = proxyConnections.get(forwardingData.getChannelId());
         if (proxyConnection != null) {
             proxyConnection.send(forwardingData.getData());
-            System.err.println("local send:" + forwardingData.getData().length);
         }
     }
 
     @SneakyThrows
-    private void processConnectProxy(ChannelHandlerContext ctx, ConnectProxyData connectProxyData) {
+    private void processProxyConnect(ChannelHandlerContext ctx, ConnectProxyData connectProxyData) {
         final String channelId = connectProxyData.getChannelId();
-        System.err.println(channelId);
         ProxyConnection proxyConnection = ProxyConnection.connect("127.0.0.1", connectProxyData.getLocalPort(), new ChannelInboundHandlerAdapter() {
             @Override
+            public void channelActive(ChannelHandlerContext ctx) throws Exception {
+                super.channelActive(ctx);
+            }
+
+            @Override
             public void channelRead(ChannelHandlerContext ccc, Object msg) throws Exception {
-                TunnifyMessage<ForwardingData> message = new TunnifyMessage<>(TunnifyMessageConstant.COMMAND_FORWARDING,
+                TunnifyMessage<ForwardingData> message = new TunnifyMessage<>(CommandEnum.DATA_FORWARDING.getCode(),
                         new ForwardingData(channelId, ByteBufUtil.getBytes((ByteBuf) msg)));
                 ctx.writeAndFlush(message);
             }
@@ -81,7 +85,7 @@ public class TunnifyClientHandler extends TunnifyCommandHandler {
         proxyConnections.put(connectProxyData.getChannelId(), proxyConnection);
     }
 
-    private void processClose(ChannelHandlerContext ctx, MessageData messageData) {
+    private void processDisconnect(ChannelHandlerContext ctx, MessageData messageData) {
         log.error("Loss of connection,because:{}", messageData.getMessage());
         ctx.close();
     }

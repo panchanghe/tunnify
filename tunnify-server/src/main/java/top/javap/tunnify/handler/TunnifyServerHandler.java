@@ -1,16 +1,17 @@
 package top.javap.tunnify.handler;
 
 import io.netty.buffer.Unpooled;
-import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import top.javap.tunnify.command.data.ConnectData;
+import top.javap.tunnify.command.CommandEnum;
+import top.javap.tunnify.command.data.AuthenticationData;
 import top.javap.tunnify.command.data.ForwardingData;
 import top.javap.tunnify.command.data.MessageData;
 import top.javap.tunnify.command.data.OpenProxyData;
+import top.javap.tunnify.exceptions.TunnifyException;
 import top.javap.tunnify.protocol.TunnifyMessage;
-import top.javap.tunnify.protocol.TunnifyMessageConstant;
 import top.javap.tunnify.protocol.TunnifyRawMessage;
 import top.javap.tunnify.proxy.ProxyServer;
 import top.javap.tunnify.utils.Assert;
@@ -25,22 +26,39 @@ import java.util.concurrent.ConcurrentHashMap;
  * @date: 2024/9/27
  **/
 @Slf4j
+@RequiredArgsConstructor
 public class TunnifyServerHandler extends TunnifyCommandHandler {
     private static final Map<Integer, ProxyServer> proxyServers = new ConcurrentHashMap<>();
+    private final String password;
+    private boolean authenticated = false;
 
     @Override
     protected void process(ChannelHandlerContext ctx, TunnifyRawMessage message) {
-        if (Objects.equals(TunnifyMessageConstant.COMMAND_CONNECT, message.getCommand())) {
-            processConnect(ctx, message.getDataObject(ConnectData.class));
-        } else if (Objects.equals(TunnifyMessageConstant.COMMAND_OPEN_PROXY, message.getCommand())) {
-            processOpenProxy(ctx, message.getDataObject(OpenProxyData.class));
-        } else if (Objects.equals(TunnifyMessageConstant.COMMAND_FORWARDING, message.getCommand())) {
-            ForwardingData forwardingData = message.getDataObject(ForwardingData.class);
-            Channel channel = channels.get(forwardingData.getChannelId());
-            if (channel != null) {
-                channel.writeAndFlush(Unpooled.copiedBuffer(forwardingData.getData()));
+        CommandEnum commandEnum = CommandEnum.getByCode(message.getCommand());
+        if (allowAccess(ctx, commandEnum)) {
+            switch (commandEnum) {
+                case AUTHENTICATION -> processAuthentication(ctx, message.getDataObject(AuthenticationData.class));
+                case OPEN_PROXY -> processOpenProxy(ctx, message.getDataObject(OpenProxyData.class));
+                case DATA_FORWARDING -> processDataForwarding(ctx, message.getDataObject(ForwardingData.class));
+                default -> throw new TunnifyException("Invalid command:" + message.getCommand());
             }
         }
+    }
+
+    private boolean allowAccess(ChannelHandlerContext ctx, CommandEnum commandEnum) {
+        if (authenticated || CommandEnum.AUTHENTICATION.equals(commandEnum)) {
+            return true;
+        }
+        TunnifyMessage message = new TunnifyMessage(CommandEnum.ACCESS_DENIED.getCode(), new MessageData("Access denied, please authenticate first"));
+        ctx.writeAndFlush(message);
+        return false;
+    }
+
+    private void processDataForwarding(ChannelHandlerContext ctx, ForwardingData forwardingData) {
+        channels.writeAndFlush(Unpooled.copiedBuffer(forwardingData.getData()),
+                channel -> {
+                    return channel.id().asLongText().equals(forwardingData.getChannelId());
+                });
     }
 
     @SneakyThrows
@@ -50,12 +68,13 @@ public class TunnifyServerHandler extends TunnifyCommandHandler {
         proxyServers.put(openProxyData.getRemotePort(), proxyServer);
     }
 
-    private void processConnect(ChannelHandlerContext ctx, ConnectData connectData) {
-        if (true) {
+    private void processAuthentication(ChannelHandlerContext ctx, AuthenticationData authenticationData) {
+        if (Objects.equals(this.password, authenticationData.getPassword())) {
+            authenticated = true;
             log.info("Connection successful,remote:{}", ctx.channel().remoteAddress());
         } else {
-            ctx.writeAndFlush(new TunnifyMessage<>(TunnifyMessageConstant.COMMAND_CLOSE, new MessageData("Password error")));
-            ctx.close();
+            TunnifyMessage message = new TunnifyMessage(CommandEnum.ACCESS_DENIED.getCode(), new MessageData("Password error"));
+            ctx.writeAndFlush(message);
         }
     }
 }

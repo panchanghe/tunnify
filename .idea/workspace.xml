@@ -4,27 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8a82d87f-74ad-4df6-a515-2c1002090e05" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/config/ConfigValueConstant.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/config/PortMapping.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tunnify-starter/src/main/resources/client-example.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tunnify-starter/src/main/resources/server-example.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="8a82d87f-74ad-4df6-a515-2c1002090e05" name="更改" comment="1">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tunnify-client/src/main/java/top/javap/tunnify/TunnifyClientStarter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tunnify-client/src/main/java/top/javap/tunnify/client/TunnifyClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/tunnify-client/src/main/java/top/javap/tunnify/client/TunnifyClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tunnify-client/src/main/java/top/javap/tunnify/handler/TunnifyClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/tunnify-client/src/main/java/top/javap/tunnify/handler/TunnifyClientHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/command/data/ConnectProxyData.java" beforeDir="false" afterPath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/command/data/ConnectProxyData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/command/data/OpenProxyData.java" beforeDir="false" afterPath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/command/data/OpenProxyData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/config/BaseConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/config/BaseConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/config/ClientConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/config/ClientConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/config/PortTuple.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/config/ServerConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/config/ServerConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/utils/Assert.java" beforeDir="false" afterPath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/utils/Assert.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tunnify-server/src/main/java/top/javap/tunnify/TunnifyServerStarter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tunnify-server/src/main/java/top/javap/tunnify/handler/ProxyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/tunnify-server/src/main/java/top/javap/tunnify/handler/ProxyHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tunnify-server/src/main/java/top/javap/tunnify/handler/TunnifyServerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/tunnify-server/src/main/java/top/javap/tunnify/handler/TunnifyServerHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tunnify-starter/src/main/java/top/javap/tunnify/TunnifyStarter.java" beforeDir="false" afterPath="$PROJECT_DIR$/tunnify-starter/src/main/java/top/javap/tunnify/TunnifyStarter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tunnify-starter/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tunnify-starter/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,24 +32,20 @@
       </map>
     </option>
   </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="userSettingsFile" value="/usr/local/Cellar/maven/3.6.0/libexec/conf/settings.xml" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="2mdW27WpAJdj8KJ6e53MGGucw9Z" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "JAR 应用程序.tunnify-starter-1.0-SNAPSHOT.jar.executor": "Run",
+    "Maven.tunnify [clean].executor": "Run",
+    "Maven.tunnify [package].executor": "Run",
+    "Maven.tunnify-starter [package].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
@@ -80,7 +59,7 @@
     "project.structure.last.edited": "模块",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.1625",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "MavenSettings",
     "vue.rearranger.settings.migration": "true",
     "应用程序.Client.executor": "Run",
     "应用程序.Demo.executor": "Run",
@@ -98,7 +77,7 @@
       <recent name="top.javap.tunnify.command.data" />
     </key>
   </component>
-  <component name="RunManager" selected="应用程序.Client">
+  <component name="RunManager" selected="JAR 应用程序.tunnify-starter-1.0-SNAPSHOT.jar">
     <configuration name="Client" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="top.javap.tunnify.TunnifyStarter" />
       <module name="tunnify-starter" />
@@ -127,12 +106,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="tunnify-starter-1.0-SNAPSHOT.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/tunnify-starter/target/tunnify-starter-1.0-SNAPSHOT.jar" />
+      <method v="2" />
+    </configuration>
     <list>
+      <item itemvalue="JAR 应用程序.tunnify-starter-1.0-SNAPSHOT.jar" />
       <item itemvalue="应用程序.Client" />
       <item itemvalue="应用程序.Server" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JAR 应用程序.tunnify-starter-1.0-SNAPSHOT.jar" />
         <item itemvalue="应用程序.Server" />
       </list>
     </recent_temporary>
@@ -163,6 +148,15 @@
       <workItem from="1727443481670" duration="3674000" />
       <workItem from="1727487631857" duration="12089000" />
     </task>
+    <task id="LOCAL-00001" summary="1">
+      <option name="closed" value="true" />
+      <created>1727616829145</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1727616829145</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -178,5 +172,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="1" />
+    <option name="LAST_COMMIT_MESSAGE" value="1" />
   </component>
 </project>

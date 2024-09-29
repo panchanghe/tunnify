@@ -63,9 +63,9 @@ public class TunnifyServerHandler extends TunnifyCommandHandler {
 
     @SneakyThrows
     private void processOpenProxy(ChannelHandlerContext ctx, OpenProxyData openProxyData) {
-        Assert.isFalse(proxyServers.containsKey(openProxyData.getRemotePort()), "port is already in use");
-        ProxyServer proxyServer = ProxyServer.bind(openProxyData.getRemotePort(), channels, new ProxyHandler(ctx.channel(), openProxyData.getLocalPort()));
-        proxyServers.put(openProxyData.getRemotePort(), proxyServer);
+        Assert.isFalse(proxyServers.containsKey(openProxyData.getServerPort()), "port is already in use");
+        ProxyServer proxyServer = ProxyServer.bind(openProxyData.getServerPort(), channels, new ProxyHandler(ctx.channel(), openProxyData.getTargetHost(), openProxyData.getTargetPort()));
+        proxyServers.put(openProxyData.getServerPort(), proxyServer);
     }
 
     private void processAuthentication(ChannelHandlerContext ctx, AuthenticationData authenticationData) {

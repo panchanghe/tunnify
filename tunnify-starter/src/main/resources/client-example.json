@@ -1,0 +1,13 @@
+{
+    "mode": "CLIENT",
+    "password": "94c921ab82f6423d889b1b739d8e2b8c",
+    "serverHost": "127.0.0.1",
+    "serverPort": 9000,
+    "portMappings": [
+        {
+            "serverPort": 9001,
+            "targetHost": "127.0.0.1",
+            "targetPort": 80
+        }
+    ]
+}

@@ -44,8 +44,9 @@ public class TunnifyClient {
         return channelFuture;
     }
 
-    public void openProxy(int localPort, int remotePort) {
-        TunnifyMessage<OpenProxyData> message = new TunnifyMessage<>(CommandEnum.OPEN_PROXY.getCode(), new OpenProxyData(localPort, remotePort));
+    public void openProxy(int serverPort, String targetHost, int targetPort) {
+        TunnifyMessage<OpenProxyData> message = new TunnifyMessage<>(CommandEnum.OPEN_PROXY.getCode(), new OpenProxyData(serverPort, targetHost, targetPort));
         channel.writeAndFlush(message);
+        log.info("open proxy {} -> {}:{}", serverPort, targetHost, targetPort);
     }
 }

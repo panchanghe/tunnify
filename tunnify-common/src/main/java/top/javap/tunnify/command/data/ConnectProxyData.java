@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class ConnectProxyData {
-    private int localPort;
+    private String targetHost;
+    private int targetPort;
     private String channelId;
 }

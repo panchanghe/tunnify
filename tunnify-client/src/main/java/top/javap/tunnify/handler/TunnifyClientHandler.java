@@ -69,7 +69,7 @@ public class TunnifyClientHandler extends TunnifyCommandHandler {
     @SneakyThrows
     private void processProxyConnect(ChannelHandlerContext ctx, ConnectProxyData connectProxyData) {
         final String channelId = connectProxyData.getChannelId();
-        ProxyConnection proxyConnection = ProxyConnection.connect("127.0.0.1", connectProxyData.getLocalPort(), new ChannelInboundHandlerAdapter() {
+        ProxyConnection proxyConnection = ProxyConnection.connect(connectProxyData.getTargetHost(), connectProxyData.getTargetPort(), new ChannelInboundHandlerAdapter() {
             @Override
             public void channelActive(ChannelHandlerContext ctx) throws Exception {
                 super.channelActive(ctx);

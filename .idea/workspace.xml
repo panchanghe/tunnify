@@ -5,27 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a82d87f-74ad-4df6-a515-2c1002090e05" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tunnify-client/src/main/java/top/javap/tunnify/manager/LocalChannelManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tunnify-client/src/main/java/top/javap/tunnify/proxy/ProxyConnection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/command/data/ConnectProxyData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/command/data/ForwardingData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/utils/Assert.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tunnify-server/src/main/java/top/javap/tunnify/handler/ProxyHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tunnify-server/src/main/java/top/javap/tunnify/proxy/ProxyServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/config/ConfigValueConstant.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/config/PortMapping.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tunnify-starter/src/main/resources/client-example.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tunnify-starter/src/main/resources/server-example.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tunnify-client/src/main/java/top/javap/tunnify/TunnifyClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/tunnify-client/src/main/java/top/javap/tunnify/client/TunnifyClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tunnify-client/src/main/java/top/javap/tunnify/TunnifyClientStarter.java" beforeDir="false" afterPath="$PROJECT_DIR$/tunnify-client/src/main/java/top/javap/tunnify/TunnifyClientStarter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tunnify-client/src/main/java/top/javap/tunnify/TunnifyClientStarter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tunnify-client/src/main/java/top/javap/tunnify/client/TunnifyClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/tunnify-client/src/main/java/top/javap/tunnify/client/TunnifyClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tunnify-client/src/main/java/top/javap/tunnify/handler/TunnifyClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/tunnify-client/src/main/java/top/javap/tunnify/handler/TunnifyClientHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tunnify-common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tunnify-common/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/handler/TunnifyCommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/handler/TunnifyCommandHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/handler/TunnifyMessageCodec.java" beforeDir="false" afterPath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/handler/TunnifyMessageCodec.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/protocol/TunnifyMessageConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/protocol/TunnifyMessageConstant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tunnify-server/src/main/java/top/javap/tunnify/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/tunnify-server/src/main/java/top/javap/tunnify/Demo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tunnify-server/src/main/java/top/javap/tunnify/TunnifyServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/tunnify-server/src/main/java/top/javap/tunnify/server/TunnifyServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tunnify-server/src/main/java/top/javap/tunnify/TunnifyServerStarter.java" beforeDir="false" afterPath="$PROJECT_DIR$/tunnify-server/src/main/java/top/javap/tunnify/TunnifyServerStarter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/command/data/ConnectProxyData.java" beforeDir="false" afterPath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/command/data/ConnectProxyData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/command/data/OpenProxyData.java" beforeDir="false" afterPath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/command/data/OpenProxyData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/config/BaseConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/config/BaseConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/config/ClientConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/config/ClientConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/config/PortTuple.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/config/ServerConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/config/ServerConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/utils/Assert.java" beforeDir="false" afterPath="$PROJECT_DIR$/tunnify-common/src/main/java/top/javap/tunnify/utils/Assert.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tunnify-server/src/main/java/top/javap/tunnify/TunnifyServerStarter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tunnify-server/src/main/java/top/javap/tunnify/handler/ProxyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/tunnify-server/src/main/java/top/javap/tunnify/handler/ProxyHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tunnify-server/src/main/java/top/javap/tunnify/handler/TunnifyServerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/tunnify-server/src/main/java/top/javap/tunnify/handler/TunnifyServerHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tunnify-starter/src/main/java/top/javap/tunnify/TunnifyStarter.java" beforeDir="false" afterPath="$PROJECT_DIR$/tunnify-starter/src/main/java/top/javap/tunnify/TunnifyStarter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,8 +34,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -72,7 +71,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/dev/code/my/tunnify",
+    "last_opened_file_path": "D:/dev/code/my/tunnify/tunnify-starter/src/main/resources",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -83,23 +82,30 @@
     "project.structure.side.proportion": "0.1625",
     "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true",
+    "应用程序.Client.executor": "Run",
     "应用程序.Demo.executor": "Run",
+    "应用程序.Server.executor": "Run",
     "应用程序.TunnifyClientStarter.executor": "Debug",
-    "应用程序.TunnifyServerStarter.executor": "Debug"
+    "应用程序.TunnifyServerStarter.executor": "Debug",
+    "应用程序.TunnifyStarter.executor": "Run"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\dev\code\my\tunnify\tunnify-starter\src\main\resources" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="top.javap.tunnify.command.data" />
     </key>
   </component>
-  <component name="RunManager" selected="应用程序.TunnifyClientStarter">
-    <configuration name="Demo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="top.javap.tunnify.Demo" />
-      <module name="tunnify-server" />
+  <component name="RunManager" selected="应用程序.Client">
+    <configuration name="Client" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="top.javap.tunnify.TunnifyStarter" />
+      <module name="tunnify-starter" />
+      <option name="PROGRAM_PARAMETERS" value="-c D:\dev\code\my\tunnify\tunnify-starter\src\main\resources\client-example.json" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="top.javap.tunnify.client.*" />
+          <option name="PATTERN" value="top.javap.tunnify.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -107,25 +113,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TunnifyClientStarter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="top.javap.tunnify.TunnifyClientStarter" />
-      <module name="tunnify-client" />
+    <configuration name="Server" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="top.javap.tunnify.TunnifyStarter" />
+      <module name="tunnify-starter" />
+      <option name="PROGRAM_PARAMETERS" value="-c D:\dev\code\my\tunnify\tunnify-starter\src\main\resources\server-example.json" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="top.javap.tunnify.proxy.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TunnifyServerStarter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="top.javap.tunnify.TunnifyServerStarter" />
-      <module name="tunnify-server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="top.javap.tunnify.proxy.*" />
+          <option name="PATTERN" value="top.javap.tunnify.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -134,15 +128,12 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="应用程序.Demo" />
-      <item itemvalue="应用程序.TunnifyClientStarter" />
-      <item itemvalue="应用程序.TunnifyServerStarter" />
+      <item itemvalue="应用程序.Client" />
+      <item itemvalue="应用程序.Server" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="应用程序.TunnifyClientStarter" />
-        <item itemvalue="应用程序.TunnifyServerStarter" />
-        <item itemvalue="应用程序.Demo" />
+        <item itemvalue="应用程序.Server" />
       </list>
     </recent_temporary>
   </component>
@@ -187,16 +178,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/tunnify-client/src/main/java/top/javap/tunnify/handler/TunnifyClientHandler.java</url>
-          <line>75</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

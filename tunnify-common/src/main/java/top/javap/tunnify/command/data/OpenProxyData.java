@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class OpenProxyData {
-    private int localPort;
-    private int remotePort;
+    private int serverPort;
+    private String targetHost;
+    private int targetPort;
 }

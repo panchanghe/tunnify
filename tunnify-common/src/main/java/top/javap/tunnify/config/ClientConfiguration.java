@@ -1,6 +1,7 @@
 package top.javap.tunnify.config;
 
 import lombok.Data;
+import top.javap.tunnify.utils.Assert;
 
 import java.util.List;
 
@@ -11,5 +12,15 @@ import java.util.List;
  **/
 @Data
 public class ClientConfiguration extends BaseConfiguration {
-    private List<PortTuple> portMapping;
+    private String serverHost;
+    private Integer serverPort;
+    private List<PortMapping> portMappings;
+
+    @Override
+    public void check() {
+        super.check();
+        Assert.hasText(serverHost, "serverHost cannot be empty");
+        Assert.notNull(serverPort, "serverPort cannot be empty");
+        Assert.isNotEmpty(portMappings, "portMappings cannot be empty");
+    }
 }
